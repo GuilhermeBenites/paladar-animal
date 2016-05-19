@@ -15,9 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'eleitor'], function () {
-    Route::get('/novo', 'EleitorController@create');
+Route::group(['prefix' => 'categorias'], function () {
+    Route::get('/', 'CategoriaController@index');
 });
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
