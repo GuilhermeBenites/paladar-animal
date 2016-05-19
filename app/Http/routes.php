@@ -18,3 +18,6 @@ Route::get('/', function () {
 Route::group(['prefix' => 'eleitor'], function () {
     Route::get('/novo', 'EleitorController@create');
 });
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
