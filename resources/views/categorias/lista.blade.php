@@ -36,8 +36,26 @@
               @foreach ($categorias as $categoria)
                 <tr>
                   <td>{{$categoria->nome}}</td>
-                  <td><button type="button" class="btn btn-round btn-warning"><i class="fa fa-search"></i></button></td>
-                  <td><button type="button" class="btn btn-round btn-danger"><i class="fa fa-times"></i></button></td>
+                  <td>
+                      <form action="{{ url('categorias/editar/'.$categoria->id) }}" method="GET">
+                          {{ csrf_field() }}
+                          {{ method_field('GET') }}
+
+                          <button type="submit" class="btn btn-round btn-warning">
+                              <i class="fa fa-search"></i>
+                          </button>
+                      </form>
+                  </td>
+                  <td>
+                      <form action="{{ url('categorias/'.$categoria->id) }}" method="POST">
+                          {{ csrf_field() }}
+                          {{ method_field('DELETE') }}
+
+                          <button type="submit" class="btn btn-round btn-danger">
+                              <i class="fa fa-trash"></i>
+                          </button>
+                      </form>
+                  </td>
                 </tr>
               @endforeach
               </tbody>

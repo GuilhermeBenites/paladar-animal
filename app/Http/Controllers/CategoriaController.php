@@ -38,18 +38,9 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-    }
+        Categoria::create($request->all());
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect('/categorias');
     }
 
     /**
@@ -58,9 +49,9 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Categoria $categoria)
     {
-        //
+        return view('categorias.editar')->with('categoria', $categoria);
     }
 
     /**
@@ -70,9 +61,13 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Categoria $categoria)
     {
-        //
+        $categoria->fill($request->all());
+
+        $categoria->save();
+
+        return redirect('/categorias');
     }
 
     /**
@@ -81,8 +76,10 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Categoria $categoria)
     {
-        //
+        $categoria->delete();
+
+        return redirect('/categorias');
     }
 }

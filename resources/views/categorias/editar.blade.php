@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-<!-- page content -->
+        <!-- page content -->
 <div class="right_col" role="main">
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Nova Categoria</h3>
+                <h3>Editar Categoria</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -15,15 +15,15 @@
                 <div class="x_panel">
                     <div class="x_content">
                         <br />
-                        <form class="form-horizontal form-label-left" action="novo" method="post">
+                        <form class="form-horizontal form-label-left" action="{{ url('categorias/editar/'.$categoria->id) }}" method="post">
 
-                            {{ method_field('POST') }}
+                            {{ method_field('PUT') }}
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Nome
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="nome" required="required" name="nome" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" id="nome" required="required" name="nome" value="<?php echo $categoria->nome; ?>" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
