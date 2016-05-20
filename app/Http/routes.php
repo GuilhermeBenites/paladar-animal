@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'categorias'], function () {
     Route::get('/', 'CategoriaController@index');
+
+    Route::get('/novo','CategoriaController@create');
+    Route::post('/novo', 'CategoriaController@store');
 });
 
 Route::auth();
