@@ -25,7 +25,7 @@ php-5.6:
     - php -v
     - composer self-update
     - composer install --no-progress --no-interaction
-    - cp .env.test .env
+    - cp .env.testing .env
     - php artisan key:generate
     - php artisan migrate:refresh
     - php artisan db:seed
