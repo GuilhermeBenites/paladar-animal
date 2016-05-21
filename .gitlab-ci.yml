@@ -6,7 +6,7 @@ services:
 variables:
   WITH_XDEBUG: "1"
   MYSQL_ROOT_PASSWORD: secret
-  MYSQL_DATABASE: homestead
+  MYSQL_DATABASE: paladar
   MYSQL_USER: homestead
   MYSQL_PASSWORD: secret
   COMPOSER_HOME: /cache/composer
