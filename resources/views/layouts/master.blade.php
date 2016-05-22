@@ -74,9 +74,9 @@
 
                 <li><a><i class="fa fa-archive"></i> Produtos <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a href="produtos.html">Produtos</a>
+                    <li><a href="<?php echo url('produtos')?>">Produtos</a>
                     </li>
-                    <li><a href="novo_produto.html">Novo Produto</a>
+                    <li><a href="<?php echo url('produtos/novo')?>">Novo Produto</a>
                     </li>
                   </ul>
                 </li>

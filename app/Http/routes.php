@@ -27,6 +27,18 @@ Route::group(['prefix' => 'categorias'], function () {
     Route::delete('/{categoria}', 'CategoriaController@destroy');
 });
 
+Route::group(['prefix' => 'produtos'], function () {
+    Route::get('/', 'ProdutosController@index');
+
+    Route::get('/novo','ProdutosController@create');
+    Route::post('/novo', 'ProdutosController@store');
+
+    Route::get('/editar/{produto}', 'ProdutosController@edit');
+    Route::put('/editar/{produto}', 'ProdutosController@update');
+
+    Route::delete('/{produto}', 'ProdutosController@destroy');
+});
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
