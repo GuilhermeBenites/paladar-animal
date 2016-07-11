@@ -135,61 +135,43 @@
 
         <div class="page-title">
           <div class="title_left">
-            <h3>Produtos</h3>
+            <h3>Abrir Caixa</h3>
           </div>
         </div>
-
         <div class="clearfix"></div>
-
         <div class="row">
-
-          <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
-              <div class="x_title">
-                <h2>Produtos Cadastrados</h2>
-                <div class="clearfix"></div>
-              </div>
               <div class="x_content">
+                <br />
+                <form class="form-horizontal form-label-left">
 
-                <table class="table table-striped">
-                  <thead>
-                  <tr>
-                    <th>Código</th>
-                    <th>Nome</th>
-                    <th>Preço</th>
-                    <th>Categoria</th>
-                    <th></th>
-                    <th></th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Ração Max 30g</td>
-                    <td>R$ 50,00</td>
-                    <td>Ração</td>
-                    <td><button type="button" class="btn btn-round btn-warning"><i class="fa fa-search"></i></button></td>
-                    <td><button type="button" class="btn btn-round btn-danger"><i class="fa fa-times"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Coleira</td>
-                    <td>R$ 10,00</td>
-                    <td>Acessórios</td>
-                    <td><button type="button" class="btn btn-round btn-warning"><i class="fa fa-search"></i></button></td>
-                    <td><button type="button" class="btn btn-round btn-danger"><i class="fa fa-times"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Biscoito para Cachorro</td>
-                    <td>R$ 50,00</td>
-                    <td>Outros</td>
-                    <td><button type="button" class="btn btn-round btn-warning"><i class="fa fa-search"></i></button></td>
-                    <td><button type="button" class="btn btn-round btn-danger"><i class="fa fa-times"></i></button></td>
-                  </tr>
-                  </tbody>
-                </table>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Saldo do Caixa
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="text" id="nome" name="nome" class="form-control col-md-7 col-xs-12 parsley-error">
+                      <ul class="parsley-errors-list filled" id="parsley-id-20">
+                        <li class="parsley-required">Campo Obrigatório</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Observações
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                  </div>
+                  <div class="ln_solid"></div>
+                  <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                      <button class="btn btn-primary">Cancelar</button>
+                      <button type="submit" class="btn btn-success">Salvar</button>
+                    </div>
+                  </div>
 
+                </form>
               </div>
             </div>
           </div>
@@ -213,13 +195,9 @@
 <script src="../vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- FastClick -->
-<script src="../vendors/fastclick/lib/fastclick.js"></script>
-<!-- NProgress -->
-<script src="../vendors/nprogress/nprogress.js"></script>
-<!-- iCheck -->
-<script src="../vendors/iCheck/icheck.min.js"></script>
-
+<!-- bootstrap-daterangepicker -->
+<script src="js/moment/moment.min.js"></script>
+<script src="js/datepicker/daterangepicker.js"></script>
 <!-- Custom Theme Scripts -->
 <script src="js/custom.js"></script>
 </body>

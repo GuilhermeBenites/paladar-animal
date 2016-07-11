@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Categoria;
+use App\Http\Requests\ProdutoRequest;
 use App\Produto;
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 
 class ProdutosController extends Controller
 {
@@ -33,10 +31,10 @@ class ProdutosController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param ProdutoRequest|\Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProdutoRequest $request)
     {
         $request = $request->all();
         $request['preco'] = str_replace(",","." , $request['preco']);
@@ -49,8 +47,9 @@ class ProdutosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Produto $produto
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function edit(Produto $produto)
     {
@@ -60,11 +59,12 @@ class ProdutosController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param ProdutoRequest|\Illuminate\Http\Request $request
+     * @param Produto $produto
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function update(Request $request, Produto $produto)
+    public function update(ProdutoRequest $request, Produto $produto)
     {
         $produto->fill($request->all());
 
@@ -76,8 +76,10 @@ class ProdutosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Produto $produto
      * @return \Illuminate\Http\Response
+     * @throws \Exception
+     * @internal param int $id
      */
     public function destroy(Produto $produto)
     {

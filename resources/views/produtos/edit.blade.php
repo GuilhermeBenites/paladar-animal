@@ -19,27 +19,70 @@
 
                                 {{ method_field('PUT') }}
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Código
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="nome" name="codigo" class="form-control col-md-7 col-xs-12" value="{{$produto->codigo}}">
+
+                                @if ($errors->has('codigo'))
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Código
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="nome" name="codigo" class="form-control col-md-7 col-xs-12 parsley-error" value="{{ old('codigo') }}">
+                                            <ul class="parsley-errors-list filled" id="parsley-id-20">
+                                                <li class="parsley-required">{{ $errors->first('codigo') }}</li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Nome
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="nome" name="nome" class="form-control col-md-7 col-xs-12" value="{{$produto->nome}}">
+                                @else
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Código
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="nome" name="codigo" class="form-control col-md-7 col-xs-12" value="{{$produto->codigo}}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Preço
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="nome" name="preco" class="form-control col-md-7 col-xs-12" value="{{$produto->preco}}">
+                                @endif
+
+                                @if ($errors->has('nome'))
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Nome
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="nome" name="nome" class="form-control col-md-7 col-xs-12 parsley-error" value="{{ old('nome') }}">
+                                            <ul class="parsley-errors-list filled" id="parsley-id-20">
+                                                <li class="parsley-required">{{ $errors->first('nome') }}</li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Nome
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="nome" name="nome" class="form-control col-md-7 col-xs-12" value="{{$produto->nome}}">
+                                        </div>
+                                    </div>
+                                @endif
+
+                                @if ($errors->has('preco'))
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Preço
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="nome" name="preco" class="form-control col-md-7 col-xs-12 parsley-error" value="{{ old('preco') }}">
+                                            <ul class="parsley-errors-list filled" id="parsley-id-20">
+                                                <li class="parsley-required">{{ $errors->first('preco') }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Preço
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="preco" name="preco" class="form-control col-md-7 col-xs-12 preco" value="{{$produto->preco}}">
+                                        </div>
+                                    </div>
+                                @endif
+
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Categoria</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">

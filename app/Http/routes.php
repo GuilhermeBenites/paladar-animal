@@ -15,28 +15,37 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'categorias'], function () {
-    Route::get('/', 'CategoriaController@index');
+Route::group(['middleware' => 'auth'], function(){
 
-    Route::get('/novo','CategoriaController@create');
-    Route::post('/novo', 'CategoriaController@store');
+    Route::group(['prefix' => 'categorias'], function () {
+        Route::get('/', 'CategoriaController@index');
 
-    Route::get('/editar/{categoria}', 'CategoriaController@edit');
-    Route::put('/editar/{categoria}', 'CategoriaController@update');
+        Route::get('/novo','CategoriaController@create');
+        Route::post('/novo', 'CategoriaController@store');
 
-    Route::delete('/{categoria}', 'CategoriaController@destroy');
-});
+        Route::get('/editar/{categoria}', 'CategoriaController@edit');
+        Route::put('/editar/{categoria}', 'CategoriaController@update');
 
-Route::group(['prefix' => 'produtos'], function () {
-    Route::get('/', 'ProdutosController@index');
+        Route::delete('/{categoria}', 'CategoriaController@destroy');
+    });
 
-    Route::get('/novo','ProdutosController@create');
-    Route::post('/novo', 'ProdutosController@store');
+    Route::group(['prefix' => 'produtos'], function () {
+        Route::get('/', 'ProdutosController@index');
 
-    Route::get('/editar/{produto}', 'ProdutosController@edit');
-    Route::put('/editar/{produto}', 'ProdutosController@update');
+        Route::get('/novo','ProdutosController@create');
+        Route::post('/novo', 'ProdutosController@store');
 
-    Route::delete('/{produto}', 'ProdutosController@destroy');
+        Route::get('/editar/{produto}', 'ProdutosController@edit');
+        Route::put('/editar/{produto}', 'ProdutosController@update');
+
+        Route::delete('/{produto}', 'ProdutosController@destroy');
+    });
+
+    Route::group(['prefix' => 'vendas'], function () {
+        Route::get('/', 'VendaController@index');
+        Route::post('/addproduto', 'VendaController@addProduto');
+        Route::post('/finalizar', 'VendaController@finalizar');
+    });
 });
 
 Route::auth();

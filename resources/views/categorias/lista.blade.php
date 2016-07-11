@@ -42,7 +42,7 @@
                           {{ method_field('GET') }}
 
                           <button type="submit" class="btn btn-round btn-warning">
-                              <i class="fa fa-search"></i>
+                              <i class="fa fa-pencil"></i>
                           </button>
                       </form>
                   </td>

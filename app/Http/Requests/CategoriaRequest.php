@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
 class CategoriaRequest extends Request
 {
     /**
@@ -24,7 +22,7 @@ class CategoriaRequest extends Request
     public function rules()
     {
         return [
-            'nome' => 'required|string|unique'
+            'nome' => 'required|string|unique:categorias,nome'
         ];
     }
 }

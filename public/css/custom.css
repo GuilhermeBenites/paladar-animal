@@ -1,8 +1,19 @@
-.nav-sm .container.body .left_col {
+.left_col {
+  background: #2A3F54;
+}
+.nav-sm .container.body .col-md-3.left_col {
   width: 70px;
   padding: 0;
   z-index: 9999;
   position: absolute;
+}
+.nav-sm .container.body .col-md-3.left_col.menu_fixed {
+  position: fixed;
+  height: 100%;
+}
+.nav-sm .container.body .col-md-3.left_col .mCSB_container,
+.nav-sm .container.body .col-md-3.left_col .mCustomScrollBox {
+  overflow: visible;
 }
 .nav-sm .hidden-small {
   visibility: hidden;
@@ -181,6 +192,11 @@
   padding: 0;
   position: absolute;
   display: flex;
+  z-index: 9999;
+}
+.nav-md .container.body .col-md-3.left_col.menu_fixed {
+  height: 100%;
+  position: fixed;
 }
 body .container.body .right_col {
   background: #F7F7F7;
@@ -227,7 +243,12 @@ body .container.body .right_col {
     display: none
   }
 }
-
+.left_col .mCSB_scrollTools {
+  width: 6px;
+}
+.left_col .mCSB_dragger {
+  max-height: 400px !important;
+}
 /**  ------------------------------------------  **/
 
 .blue {
@@ -314,7 +335,6 @@ body .container.body .right_col {
 body {
   color: #73879C;
   background: #2A3F54;
-  /*#ECF0F1; #FCFCFC*/
   font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
   font-size: 13px;
   font-weight: 400;
@@ -679,6 +699,22 @@ footer {
 .nav-sm footer {
   margin-left: 70px ;  
 }
+.footer_fixed footer {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .footer_fixed footer {
+    margin-left: 0;
+  }
+}
+@media (min-width: 768px) {
+  .footer_fixed .nav-sm footer {
+    margin-left: 0;
+  }
+}
 .tile-stats.sparkline {
   padding: 10px;
   text-align: center;
@@ -859,10 +895,6 @@ h2 {
 }
 legend {
   padding-bottom: 7px;
-}
-.modal-title {
-  margin: 0;
-  line-height: 1.42857143;
 }
 .demo-placeholder {
   height: 280px;
@@ -1503,7 +1535,6 @@ span.right {
   padding: 5px 0 0 0;
   position: fixed;
   width: 230px;
-  z-index: 1000;
   background: #2A3F54;
 }
 .sidebar-footer a {
@@ -1692,8 +1723,7 @@ h4.graph_title {
 /* *********  /iconts-display  **************************** */
 
 
-/* *********  Tile stats  **************************** */
-
+/** tile stats **/
 .tile-stats {
   position: relative;
   display: block;
@@ -1713,6 +1743,7 @@ h4.graph_title {
   -webkit-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out;
 }
+
 .tile-stats:hover .icon i {
   animation-name: tansformAnimation;
   animation-duration: .5s;
@@ -1731,6 +1762,7 @@ h4.graph_title {
   -moz-animation-timing-function: ease;
   -moz-animation-fill-mode: forwards;
 }
+
 .tile-stats .icon {
   width: 20px;
   height: 20px;
@@ -1740,6 +1772,7 @@ h4.graph_title {
   top: 22px;
   z-index: 1;
 }
+
 .tile-stats .icon i {
   margin: 0;
   font-size: 60px;
@@ -1747,11 +1780,13 @@ h4.graph_title {
   vertical-align: bottom;
   padding: 0;
 }
+
 .tile-stats .count {
   font-size: 38px;
   font-weight: bold;
   line-height: 1.65857143
 }
+
 .tile-stats .count, .tile-stats h3, .tile-stats p {
   position: relative;
   margin: 0;
@@ -1759,13 +1794,16 @@ h4.graph_title {
   z-index: 5;
   padding: 0;
 }
+
 .tile-stats h3 {
   color: #BAB8B8;
 }
+
 .tile-stats p {
   margin-top: 5px;
   font-size: 12px;
 }
+
 .tile-stats > .dash-box-footer {
   position: relative;
   text-align: center;
@@ -1778,36 +1816,44 @@ h4.graph_title {
   background: rgba(0, 0, 0, 0.1);
   text-decoration: none;
 }
+
 .tile-stats > .dash-box-footer:hover {
   color: #fff;
   background: rgba(0, 0, 0, 0.15);
 }
+
 .tile-stats > .dash-box-footer:hover {
   color: #fff;
   background: rgba(0, 0, 0, 0.15);
 }
+
 table.tile_info {
   padding: 10px 15px;
 }
+
 table.tile_info span.right {
   margin-right: 0;
   float: right;
   position: absolute;
   right: 4%;
 }
+
 .tile:hover {
   text-decoration: none;
 }
+
 .tile_header {
   border-bottom: transparent;
   padding: 7px 15px;
   margin-bottom: 15px;
   background: #E7E7E7;
 }
+
 .tile_head h4 {
   margin-top: 0;
   margin-bottom: 5px;
 }
+
 .tiles-bottom {
   padding: 5px 10px;
   margin-top: 10px;
@@ -1815,14 +1861,14 @@ table.tile_info span.right {
   text-align: left;
 }
 
-/* *********  /Tile stats  **************************** */
 
+/** /tile stats **/
 
-/* *********  /inbox design  **************************** */
-
+/** inbox **/
 a.star {
   color: #428bca !important
 }
+
 .mail_content {
   background: none repeat scroll 0 0 #FFFFFF;
   border-radius: 4px;
@@ -1831,19 +1877,23 @@ a.star {
   padding: 10px 11px;
   width: 100%;
 }
+
 .list-btn-mail {
   margin-bottom: 15px;
 }
+
 .list-btn-mail.active {
   border-bottom: 1px solid #39B3D7;
   padding: 0 0 14px;
 }
+
 .list-btn-mail > i {
   float: left;
   font-size: 18px;
   font-style: normal;
   width: 33px;
 }
+
 .list-btn-mail > .cn {
   background: none repeat scroll 0 0 #39B3D7;
   border-radius: 12px;
@@ -1852,71 +1902,86 @@ a.star {
   font-style: normal;
   padding: 0 5px;
 }
+
 .button-mail {
   margin: 0 0 15px !important;
   text-align: left;
   width: 100%;
 }
+
 .buttons, button, .btn {
   margin-bottom: 5px;
   margin-right: 5px;
 }
+
 .btn-group-vertical .btn, .btn-group .btn {
   margin-bottom: 0;
   margin-right: 0;
 }
+
 .mail_list_column {
   border-left: 1px solid #DBDBDB;
 }
+
 .mail_view {
   border-left: 1px solid #DBDBDB
 }
+
 .mail_list {
   width: 100%;
   border-bottom: 1px solid #DBDBDB;
   margin-bottom: 2px;
   display: inline-block;
 }
+
 .mail_list .left {
   width: 5%;
   float: left;
   margin-right: 3%
 }
+
 .mail_list .right {
   width: 90%;
   float: left
 }
+
 .mail_list h3 {
   font-size: 15px;
   font-weight: bold;
   margin: 0px 0 6px;
 }
+
 .mail_list h3 small {
   float: right;
   color: #ADABAB;
   font-size: 11px;
   line-height: 20px;
 }
+
 .mail_list .badge {
   padding: 3px 6px;
   font-size: 8px;
   background: #BAB7B7
 }
+
 @media (max-width: 767px) {
   .mail_list {
     margin-bottom: 5px;
     display: inline-block;
   }
 }
+
 .mail_heading h4 {
   font-size: 18px;
   border-bottom: 1px solid #ddd;
   padding-bottom: 10px;
   margin-top: 20px;
 }
+
 .attachment {
   margin-top: 30px;
 }
+
 .attachment ul {
   width: 100%;
   list-style: none;
@@ -1924,31 +1989,78 @@ a.star {
   display: inline-block;
   margin-bottom: 30px;
 }
+
 .attachment ul li {
   float: left;
   width: 150px;
   margin-right: 10px;
   margin-bottom: 10px;
 }
+
 .attachment ul li img {
   height: 150px;
   border: 1px solid #ddd;
   padding: 5px;
   margin-bottom: 10px;
 }
+
 .attachment ul li span {
   float: right;
 }
+
 .attachment .file-name {
   float: left;
 }
+
 .attachment .links {
   width: 100%;
   display: inline-block;
 }
 
-/* *********  /inbox design   **************************** */
+.compose {  
+  padding: 0;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #D9DEE4;
+  border-right: 0;
+  border-bottom: 0;
+  border-top-left-radius: 5px;
+  z-index: 9999;
+  display: none;
+}
 
+.compose .compose-header {
+  padding: 5px;
+  background: #169F85;
+  color: #fff;
+  border-top-left-radius: 5px;
+}
+
+.compose .compose-header .close {
+  text-shadow: 0 1px 0 #ffffff;
+  line-height: .8;
+}
+
+.compose .compose-body .editor.btn-toolbar {
+  margin: 0;
+}
+
+.compose .compose-body .editor-wrapper {
+  height: 100%;
+  min-height: 50px;
+  max-height: 180px;
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  overflow: auto;
+}
+
+.compose .compose-footer {
+  padding: 10px;
+}
+/** /inbox **/
 
 /* *********  form design  **************************** */
 
@@ -2772,6 +2884,7 @@ ul.count2 li span {
 }
 ul.messages {
   padding: 0;
+  list-style: none;
 }
 ul.messages li, .tasks li {
   border-bottom: 1px dotted #e6e6e6;
@@ -3377,35 +3490,37 @@ ul.project_files li a i {
 
 /* *********  /ecommerce  **************************** */
 
-/********* login ****************/
-
+/** login **/
+.login {
+  background:#F7F7F7;
+}
+.login .fa-paw {
+  font-size: 26px;
+}
 a.hiddenanchor {
   display: none;
 }
-
-/** The wrapper that will contain our two forms **/
-
-#wrapper {
+.login_wrapper {
   right: 0px;
   margin: 0px auto;
   margin-top: 5%;
   max-width: 350px;
   position: relative;
 }
-#register, #login {
+.registration_form, .login_form {
   position: absolute;
   top: 0px;
   width: 100%;
 }
-#register {
+.registration_form {
   z-index: 21;
   opacity: 0;
   width: 100%;
 }
-#login {
+.login_form {
   z-index: 22;
 }
-#toregister:target ~ #wrapper #register, #tologin:target ~ #wrapper #login {
+#signup:target ~ .login_wrapper .registration_form, #signin:target ~ .login_wrapper .login_form {
   z-index: 22;
   -webkit-animation-name: fadeInLeft;
   -moz-animation-name: fadeInLeft;
@@ -3418,16 +3533,13 @@ a.hiddenanchor {
   -ms-animation-delay: .1s;
   animation-delay: .1s;
 }
-#toregister:target ~ #wrapper #login, #tologin:target ~ #wrapper #register {
+#signup:target ~ .login_wrapper .login_form, #signin:target ~ .login_wrapper .registration_form {
   -webkit-animation-name: fadeOutLeft;
   -moz-animation-name: fadeOutLeft;
   -ms-animation-name: fadeOutLeft;
   -o-animation-name: fadeOutLeft;
   animation-name: fadeOutLeft;
 }
-
-/** the actual animation, credit where due : http://daneden.me/animate/ ***/
-
 .animate {
   -webkit-animation-duration: 0.5s;
   -webkit-animation-timing-function: ease;
@@ -3445,12 +3557,9 @@ a.hiddenanchor {
   animation-timing-function: ease;
   animation-fill-mode: both;
 }
+/** /login **/
 
-/********* /login ***************/
-
-
-/********** sign in ***************************/
-
+/** signup **/
 .login_box {
   padding: 20px;
   margin: auto;
@@ -3641,8 +3750,7 @@ a.hiddenanchor {
 header {
   width: 100%;
 }
-
-/********** end of sign in ********************/
+/** signup **/
 
 
 /* *********  start nprogress  **************************** */
@@ -3726,7 +3834,7 @@ header {
 
 
 /** bootstrap-wysiwyg **/
-#editor {
+.editor-wrapper {
   min-height: 250px;
   background-color: white;
   border-collapse: separate; 
