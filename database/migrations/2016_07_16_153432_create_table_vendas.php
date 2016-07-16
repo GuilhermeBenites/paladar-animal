@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterTableItemVendas extends Migration
+class CreateTableVendas extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,10 @@ class AlterTableItemVendas extends Migration
      */
     public function up()
     {
-        Schema::table('item_vendas', function (Blueprint $table) {
-            $table->foreign('venda_id')->references('id')->on('vendas');
-
-            $table->float('precoUnidade');
+        Schema::create('vendas', function (Blueprint $table) {
+            $table->increments('id');
             $table->float('total');
+            $table->timestamps();
         });
     }
 
@@ -27,8 +26,6 @@ class AlterTableItemVendas extends Migration
      */
     public function down()
     {
-        Schema::table('item_vendas', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('vendas');
     }
 }
