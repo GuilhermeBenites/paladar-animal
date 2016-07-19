@@ -48,6 +48,10 @@ Route::group(['middleware' => 'auth'], function(){
         Route::delete('/item/{item}', 'VendaController@removeItem');
         Route::delete('/', 'VendaController@cancelaVenda');
     });
+
+    Route::group(['prefix' => 'estoque'], function () {
+        Route::get('/', 'EstoqueController@index');
+    });
 });
 
 Route::auth();

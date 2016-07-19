@@ -57,6 +57,8 @@
               </li>
               <li><a><i class="fa fa-truck"></i> Estoque <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
+                  <li><a href="{{url('estoque')}}">Estoque Atual</a>
+                  </li>
                   <li><a href="#">Histórico de Movimentações</a>
                   </li>
                   <li><a href="#">Entrada de Mercadoria</a>
