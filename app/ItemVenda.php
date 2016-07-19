@@ -7,10 +7,16 @@ use Illuminate\Support\Facades\DB;
 
 class ItemVenda extends Model
 {
+    protected $table = 'item_venda';
+
     protected $fillable = ['produto_id', 'quantidade', 'precoUnidade', 'total'];
 
     public static function itensVendaSemFinalizar(){
-        return DB::table('item_vendas')->where('venda_id', null)->get();
+        return DB::table('item_venda')->where('venda_id', null)->get();
+    }
+
+    public static function cancelaVenda(){
+        DB::table('item_venda')->where('venda_id', null)->delete();
     }
 
     public function produto()

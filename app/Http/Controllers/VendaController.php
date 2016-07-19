@@ -55,4 +55,16 @@ class VendaController extends Controller
 
         return redirect('/vendas');
     }
+
+    public function removeItem(ItemVenda $item){
+        ItemVenda::destroy($item->id);
+
+        return redirect('/vendas');
+    }
+
+    public function cancelaVenda(){
+        ItemVenda::cancelaVenda();
+
+        return redirect('/vendas');
+    }
 }

@@ -19,7 +19,7 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-                            <br />
+                            <br/>
                             <form class="form-horizontal form-label-left" action="vendas/addproduto" method="post">
 
                                 {{ method_field('POST') }}
@@ -30,7 +30,8 @@
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <select class="form-control" name="produto_id">
                                             @foreach($produtos as $produto)
-                                                <option value="{{$produto->id}}">{{$produto->codigo}} - {{$produto->nome}}</option>
+                                                <option value="{{$produto->id}}">{{$produto->codigo}}
+                                                    - {{$produto->nome}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -39,7 +40,8 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Quantidade
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="quantidade" name="quantidade" class="form-control col-md-7 col-xs-12">
+                                        <input type="text" id="quantidade" name="quantidade"
+                                               class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
                                 <div class="ln_solid"></div>
@@ -83,7 +85,16 @@
                                         <td>{{$item->quantidade}}</td>
                                         <td>R$ {{$item->precoUnidade}}</td>
                                         <td>R$ {{$item->total}}</td>
-                                        <td>Remover<td>
+                                        <td>
+                                            <form action="{{ url('vendas/item/'.$item->id) }}" method="POST">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+
+                                                <button type="submit" class="btn btn-round btn-danger">
+                                                    <i class="fa fa-trash"></i> Remover
+                                                </button>
+                                            </form>
+                                        <td>
                                     </tr>
                                 @endforeach
 
@@ -98,20 +109,31 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
 
-                        <form id="finalizar_venda" data-parsley-validate class="form-horizontal form-label-left" action="vendas/finalizar" method="post">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10 col-sm-10 col-xs-10">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-1">
+                        <form action="vendas/finalizar" method="post">
 
                             {{ method_field('POST') }}
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                             <input type="hidden" name="total" value="{{$totalDeVendas}}">
-                            <div class="form-group">
-                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                    <button type="submit" class="btn btn-primary">Finalizar Venda</button>
-                                </div>
-                            </div>
+
+                            <button type="submit" class="btn btn-primary">Finalizar Venda</button>
                         </form>
                     </div>
+                    <form action="{{ url('vendas/') }}" method="POST">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fa fa-trash"></i> Cancelar Venda
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -45,6 +45,8 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/', 'VendaController@index');
         Route::post('/addproduto', 'VendaController@addProduto');
         Route::post('/finalizar', 'VendaController@finalizar');
+        Route::delete('/item/{item}', 'VendaController@removeItem');
+        Route::delete('/', 'VendaController@cancelaVenda');
     });
 });
 
