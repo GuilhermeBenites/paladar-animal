@@ -12,7 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    if (Auth::check()) {
+        return redirect('/vendas');
+    }
+
+    return view('auth.login');
 });
 
 Route::group(['middleware' => 'auth'], function(){
@@ -55,5 +60,3 @@ Route::group(['middleware' => 'auth'], function(){
 });
 
 Route::auth();
-
-Route::get('/home', 'HomeController@index');
