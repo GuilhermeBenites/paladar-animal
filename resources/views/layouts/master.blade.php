@@ -61,7 +61,7 @@
                   </li>
                   <li><a href="#">Histórico de Movimentações</a>
                   </li>
-                  <li><a href="#">Entrada de Mercadoria</a>
+                  <li><a href="{{url('estoque/entrada')}}">Entrada de Mercadoria</a>
                   </li>
                   <li><a href="#">Baixa de Mercadoria</a>
                   </li>

@@ -56,6 +56,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::group(['prefix' => 'estoque'], function () {
         Route::get('/', 'EstoqueController@index');
+        Route::get('/entrada', 'EstoqueController@create');
+        Route::post('/entrada', 'EstoqueController@store');
     });
 });
 

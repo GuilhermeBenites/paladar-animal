@@ -34,6 +34,14 @@
                                 </thead>
                                 <tbody>
 
+                                @foreach($estoque as $item)
+                                    <tr>
+                                        <td>{{$item->produto->codigo}}</td>
+                                        <td>{{$item->produto->nome}}</td>
+                                        <td>{{$item->quantidade}}</td>
+                                        <td>Nível</td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
 

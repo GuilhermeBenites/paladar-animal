@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Estoque;
+use App\Produto;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -15,7 +17,9 @@ class EstoqueController extends Controller
      */
     public function index()
     {
-        return view('estoque.index');
+        $estoque = Estoque::all();
+
+        return view('estoque.index', array('estoque' => $estoque));
     }
 
     /**
@@ -25,7 +29,9 @@ class EstoqueController extends Controller
      */
     public function create()
     {
-        //
+        $produtos = Produto::all();
+
+        return view('estoque.create', array('produtos' => $produtos));
     }
 
     /**
@@ -36,7 +42,9 @@ class EstoqueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Estoque::create($request->all());
+
+        return redirect('/estoque');
     }
 
     /**
