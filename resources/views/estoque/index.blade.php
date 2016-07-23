@@ -39,7 +39,20 @@
                                         <td>{{$item->produto->codigo}}</td>
                                         <td>{{$item->produto->nome}}</td>
                                         <td>{{$item->quantidade}}</td>
-                                        <td>Nível</td>
+                                        @if($item->quantidade > (2*$item->produto->nivel_critico))
+                                            <td>
+                                                <span class="label label-success">OK</span>
+                                            </td>
+                                        @elseif($item->quantidade > $item->produto->nivel_critico)
+                                            <td>
+                                                <span class="label label-warning">Cuidado</span>
+                                            </td>
+                                        @else
+                                            <td>
+                                                <span class="label label-danger">Nível Crítico</span>
+                                            </td>
+                                        @endif
+
                                     </tr>
                                 @endforeach
                                 </tbody>

@@ -82,6 +82,27 @@
                                     </div>
                                 @endif
 
+                                @if ($errors->has('nivel_critico'))
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Nível Crítico
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="nivel_critico" name="nivel_critico" class="form-control col-md-7 col-xs-12 parsley-error" value="{{ old('nivel_critico') }}">
+                                            <ul class="parsley-errors-list filled">
+                                                <li class="parsley-required">{{ $errors->first('nivel_critico') }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nivel_critico">Nível Crítico
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="nivel_critico" name="nivel_critico" class="form-control col-md-7 col-xs-12">
+                                        </div>
+                                    </div>
+                                @endif
+
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Categoria</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">

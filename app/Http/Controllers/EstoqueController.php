@@ -7,6 +7,7 @@ use App\Produto;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 
 class EstoqueController extends Controller
 {
@@ -42,7 +43,17 @@ class EstoqueController extends Controller
      */
     public function store(Request $request)
     {
-        Estoque::create($request->all());
+
+        $itemEmEstoque = Estoque::where('produto_id', $request->get('produto_id'))->first();
+
+        if($itemEmEstoque != null){
+            $itemEmEstoque->quantidade += $request->get('quantidade');
+
+            $itemEmEstoque->save();
+        }
+        else{
+            Estoque::create($request->all());
+        }
 
         return redirect('/estoque');
     }
