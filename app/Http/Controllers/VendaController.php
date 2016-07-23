@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Estoque;
 use App\ItemVenda;
 use App\Produto;
 use App\Venda;
@@ -49,9 +50,19 @@ class VendaController extends Controller
 
         $venda = Venda::create($total->all());
 
-        DB::table('item_vendas')
-            ->where('venda_id', null)
-            ->update(['venda_id' => $venda->id]);
+        $items = ItemVenda::where('venda_id', null)->get();
+
+        foreach ($items as $item){
+            $item->venda_id = $venda->id;
+
+            $itemEmEstoque = Estoque::where('produto_id', $item->produto_id)->first();
+
+            $itemEmEstoque->quantidade -= $item->quantidade;
+
+            $itemEmEstoque->save();
+
+            $item->save();
+        }
 
         return redirect('/vendas');
     }
