@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Estoque;
 use App\Movimentacao;
-use App\Produto;
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests;
 
-class EstoqueController extends Controller
+class MovimentacaoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +16,9 @@ class EstoqueController extends Controller
      */
     public function index()
     {
-        $estoque = Estoque::all();
+        $movimentacoes = Movimentacao::all();
 
-        return view('estoque.index', array('estoque' => $estoque));
+        return view('movimentacoes.index', array('movimentacoes' => $movimentacoes));
     }
 
     /**
@@ -30,9 +28,7 @@ class EstoqueController extends Controller
      */
     public function create()
     {
-        $produtos = Produto::all();
-
-        return view('estoque.create', array('produtos' => $produtos));
+        //
     }
 
     /**
@@ -43,31 +39,7 @@ class EstoqueController extends Controller
      */
     public function store(Request $request)
     {
-
-        $itemEmEstoque = Estoque::where('produto_id', $request->get('produto_id'))->first();
-
-        if($itemEmEstoque != null){
-            $itemEmEstoque->quantidade += $request->get('quantidade');
-
-            $itemEmEstoque->save();
-        }
-        else{
-            $itemEmEstoque = Estoque::create($request->all());
-        }
-
-        // Cria a movimentação
-
-        $movimentacao = new Movimentacao();
-
-        $movimentacao->quantidade = $request->get('quantidade');
-        $movimentacao->produto_id = $itemEmEstoque->produto_id;
-        $movimentacao->razao = 'entrada';
-
-        $movimentacao->usuario_id =  Auth::user()->id;
-
-        $movimentacao->save();
-
-        return redirect('/estoque');
+        //
     }
 
     /**

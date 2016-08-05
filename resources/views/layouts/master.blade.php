@@ -59,7 +59,7 @@
                 <ul class="nav child_menu">
                   <li><a href="{{url('estoque')}}">Estoque Atual</a>
                   </li>
-                  <li><a href="#">Histórico de Movimentações</a>
+                  <li><a href="{{url('movimentacao')}}">Histórico de Movimentações</a>
                   </li>
                   <li><a href="{{url('estoque/entrada')}}">Entrada de Mercadoria</a>
                   </li>
