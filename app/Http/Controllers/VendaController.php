@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Estoque;
 use App\ItemVenda;
+use App\Movimentacao;
 use App\Produto;
 use App\Venda;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class VendaController extends Controller
@@ -27,7 +29,7 @@ class VendaController extends Controller
         foreach ($itensVenda as $item){
             $item->produto = Produto::find($item->produto_id);
 
-            $totalDeVendas += $item->produto->preco;
+            $totalDeVendas += $item->produto->preco * $item->quantidade;
         }
 
         return view('vendas.index', array('produtos' => $produtos, 'itensVenda' => $itensVenda, 'totalDeVendas' => $totalDeVendas));
@@ -48,9 +50,15 @@ class VendaController extends Controller
 
     public function finalizar(Request $total){
 
+
+
         $venda = Venda::create($total->all());
 
+
+
         $items = ItemVenda::where('venda_id', null)->get();
+
+
 
         foreach ($items as $item){
             $item->venda_id = $venda->id;
@@ -62,6 +70,19 @@ class VendaController extends Controller
             $itemEmEstoque->save();
 
             $item->save();
+
+            // Cria a movimentação
+
+            $movimentacao = new Movimentacao();
+
+            $movimentacao->venda_id = $venda->id;
+            $movimentacao->quantidade = $item->quantidade;
+            $movimentacao->produto_id = $item->produto_id;
+            $movimentacao->razao = 'venda';
+
+            $movimentacao->usuario_id =  Auth::user()->id;
+
+            $movimentacao->save();
         }
 
         return redirect('/vendas');
