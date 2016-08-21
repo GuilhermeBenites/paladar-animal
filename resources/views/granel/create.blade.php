@@ -6,7 +6,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Abrir Saco</h3>
+                    <h3>Novo Granel</h3>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -15,60 +15,48 @@
                     <div class="x_panel">
                         <div class="x_content">
                             <br />
-                            <form class="form-horizontal form-label-left" action="abrir" method="post">
+                            <form class="form-horizontal form-label-left" action="novo" method="post">
 
                                 {{ method_field('POST') }}
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Ração</label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select class="form-control" name="produto_id">
-                                            @foreach ($racoes as $racao)
-                                                <option value="{{$racao->id}}">{{$racao->nome}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-
-                                @if ($errors->has('quantidade'))
+                                @if ($errors->has('codigo'))
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Quantidade
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Código
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" id="quantidade" name="quantidade" class="form-control col-md-7 col-xs-12 parsley-error" value="{{ old('quantidade') }}">
+                                            <input type="text" id="nome" name="codigo" class="form-control col-md-7 col-xs-12 parsley-error" value="{{ old('codigo') }}">
                                             <ul class="parsley-errors-list filled" id="parsley-id-20">
-                                                <li class="parsley-required">{{ $errors->first('quantidade') }}</li>
+                                                <li class="parsley-required">{{ $errors->first('codigo') }}</li>
                                             </ul>
                                         </div>
                                     </div>
                                 @else
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Quantidade
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Código
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" id="quantidade" name="quantidade" class="form-control col-md-7 col-xs-12">
+                                            <input type="text" id="nome" name="codigo" class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                 @endif
 
-                                @if ($errors->has('preco'))
+                                @if ($errors->has('nome'))
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="preco">Preço KG
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Nome
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" id="preco" name="preco" class="form-control col-md-7 col-xs-12 parsley-error" value="{{ old('preco') }}">
+                                            <input type="text" id="nome" name="nome" class="form-control col-md-7 col-xs-12 parsley-error" value="{{ old('nome') }}">
                                             <ul class="parsley-errors-list filled" id="parsley-id-20">
-                                                <li class="parsley-required">{{ $errors->first('preco') }}</li>
+                                                <li class="parsley-required">{{ $errors->first('nome') }}</li>
                                             </ul>
                                         </div>
                                     </div>
                                 @else
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="preco">Preço KG
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Nome
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" id="preco" name="preco" class="form-control col-md-7 col-xs-12">
+                                            <input type="text" id="nome" name="nome" class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                 @endif
@@ -76,7 +64,7 @@
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                        <a class="btn btn-primary" href="{{url('produtos')}}">Cancelar</a>
+                                        <a class="btn btn-primary" href="{{url('granel')}}">Cancelar</a>
                                         <button type="submit" class="btn btn-success">Salvar</button>
                                     </div>
                                 </div>

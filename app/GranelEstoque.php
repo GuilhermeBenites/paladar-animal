@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class GranelEstoque extends Model
 {
-    protected $fillable = ['produto_id', 'quantidade', 'preco'];
+    protected $fillable = ['granel_id', 'quantidade', 'preco'];
 
-    public function produto()
+    public function granel()
     {
-        return $this->belongsTo('App\Produto', 'produto_id');
+        return $this->belongsTo('App\Granel', 'granel_id');
     }
 }

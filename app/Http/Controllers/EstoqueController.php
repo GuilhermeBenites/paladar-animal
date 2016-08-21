@@ -48,6 +48,7 @@ class EstoqueController extends Controller
 
         if($itemEmEstoque != null){
             $itemEmEstoque->quantidade += $request->get('quantidade');
+            $itemEmEstoque->preco = $request->get('preco');
 
             $itemEmEstoque->save();
         }

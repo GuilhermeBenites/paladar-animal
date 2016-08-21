@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Granel;
 use App\GranelEstoque;
 use App\Produto;
 use Illuminate\Http\Request;
@@ -29,10 +30,7 @@ class GranelController extends Controller
      */
     public function create()
     {
-
-        $racoes = Produto::where('categoria_id', '=', '1')->get();
-
-        return view('granel.create', array('racoes' => $racoes));
+        return view('granel.create');
     }
 
     /**
@@ -44,9 +42,8 @@ class GranelController extends Controller
     public function store(Request $request)
     {
         $request = $request->all();
-        $request['preco'] = str_replace(",","." , $request['preco']);
 
-        GranelEstoque::create($request);
+        Granel::create($request);
 
         return redirect('/granel');
     }
@@ -94,5 +91,33 @@ class GranelController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function abrirSacoForm(){
+
+        $graneis = Granel::all();
+
+        $racoes = Produto::where('categoria_id', '=', '1')->get();
+
+        return view('granel.abrir', array('graneis' => $graneis, 'racoes' => $racoes));
+    }
+
+    public function abrirSacoSalvar(Request $request){
+
+        $itemEmEstoque = GranelEstoque::where('granel_id', $request->get('granel_id'))->first();
+
+        if($itemEmEstoque != null){
+            $itemEmEstoque->quantidade += $request->get('quantidade');
+            $itemEmEstoque->preco = $request->get('preco');
+
+            $itemEmEstoque->save();
+        }
+        else{
+            $itemEmEstoque = GranelEstoque::create($request->all());
+        }
+
+        // MOVIMENTAÇÃO
+
+        return redirect('/granel');
     }
 }

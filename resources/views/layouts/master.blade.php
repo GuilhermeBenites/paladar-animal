@@ -81,6 +81,8 @@
                   </li>
                   <li><a href="{{url('granel/abrir')}}">Abrir Saco</a>
                   </li>
+                  <li><a href="{{url('granel/novo')}}">Novo Granel</a>
+                  </li>
                 </ul>
               </li>
               <li><a><i class="fa fa-archive"></i> Produtos <span class="fa fa-chevron-down"></span></a>

@@ -26,7 +26,7 @@
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
-                                    <th>Ração</th>
+                                    <th>Granel</th>
                                     <th>Quantidade</th>
                                     <th>Preço KG</th>
                                 </tr>
@@ -35,7 +35,7 @@
 
                                 @foreach($graneis as $granel)
                                     <tr>
-                                        <td>{{$granel->produto->nome}}</td>
+                                        <td>{{$granel->granel->nome}}</td>
                                         <td>{{$granel->quantidade}}</td>
                                         <td>{{$granel->preco}}</td>
                                     </tr>

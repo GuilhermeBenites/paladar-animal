@@ -66,8 +66,10 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::group(['prefix' => 'granel'], function () {
         Route::get('/', 'GranelController@index');
-        Route::get('/abrir', 'GranelController@create');
-        Route::post('/abrir', 'GranelController@store');
+        Route::get('/novo', 'GranelController@create');
+        Route::post('/novo', 'GranelController@store');
+        Route::get('/abrir', 'GranelController@abrirSacoForm');
+        Route::post('/abrir', 'GranelController@abrirSacoSalvar');
     });
 });
 

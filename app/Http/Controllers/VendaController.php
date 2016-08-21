@@ -32,7 +32,9 @@ class VendaController extends Controller
             $totalDeVendas += $item->produto->preco * $item->quantidade;
         }
 
-        return view('vendas.index', array('produtos' => $produtos, 'itensVenda' => $itensVenda, 'totalDeVendas' => $totalDeVendas));
+        $graneis = [];
+
+        return view('vendas.index', array('produtos' => $produtos, 'itensVenda' => $itensVenda, 'totalDeVendas' => $totalDeVendas, 'graneis' => $graneis));
     }
 
     public function addProduto(Request $novoItem){
