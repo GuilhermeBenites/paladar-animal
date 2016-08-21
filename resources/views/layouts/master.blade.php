@@ -77,9 +77,9 @@
               </li>
               <li><a><i class="fa fa-bar-chart-o"></i> Granel <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                  <li><a href="#">Acompanhar???</a>
+                  <li><a href="{{url('granel')}}">Acompanhar Estoque</a>
                   </li>
-                  <li><a href="#">Abrir Saco</a>
+                  <li><a href="{{url('granel/abrir')}}">Abrir Saco</a>
                   </li>
                 </ul>
               </li>

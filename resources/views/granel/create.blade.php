@@ -6,7 +6,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Entrada de Mercadoria</h3>
+                    <h3>Abrir Saco</h3>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -15,17 +15,17 @@
                     <div class="x_panel">
                         <div class="x_content">
                             <br />
-                            <form class="form-horizontal form-label-left" action="entrada" method="post">
+                            <form class="form-horizontal form-label-left" action="abrir" method="post">
 
                                 {{ method_field('POST') }}
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Produto</label>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Ração</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <select class="form-control" name="produto_id">
-                                            @foreach ($produtos as $produto)
-                                                <option value="{{$produto->id}}">{{$produto->nome}}</option>
+                                            @foreach ($racoes as $racao)
+                                                <option value="{{$racao->id}}">{{$racao->nome}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -48,6 +48,27 @@
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <input type="text" id="quantidade" name="quantidade" class="form-control col-md-7 col-xs-12">
+                                        </div>
+                                    </div>
+                                @endif
+
+                                @if ($errors->has('preco'))
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="preco">Preço KG
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="preco" name="preco" class="form-control col-md-7 col-xs-12 parsley-error" value="{{ old('preco') }}">
+                                            <ul class="parsley-errors-list filled" id="parsley-id-20">
+                                                <li class="parsley-required">{{ $errors->first('preco') }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="preco">Preço KG
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="preco" name="preco" class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                 @endif

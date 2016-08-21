@@ -59,8 +59,15 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/entrada', 'EstoqueController@create');
         Route::post('/entrada', 'EstoqueController@store');
     });
+
     Route::group(['prefix' => 'movimentacao'], function () {
         Route::get('/', 'MovimentacaoController@index');
+    });
+
+    Route::group(['prefix' => 'granel'], function () {
+        Route::get('/', 'GranelController@index');
+        Route::get('/abrir', 'GranelController@create');
+        Route::post('/abrir', 'GranelController@store');
     });
 });
 
