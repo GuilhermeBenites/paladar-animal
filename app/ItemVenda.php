@@ -9,7 +9,7 @@ class ItemVenda extends Model
 {
     protected $table = 'item_venda';
 
-    protected $fillable = ['produto_id', 'quantidade', 'precoUnidade', 'total'];
+    protected $fillable = ['produto_id', 'quantidade', 'precoUnidade', 'total', 'granel_id'];
 
     public static function itensVendaSemFinalizar(){
         return DB::table('item_venda')->where('venda_id', null)->get();
@@ -22,5 +22,10 @@ class ItemVenda extends Model
     public function produto()
     {
         return $this->belongsTo('App\Produto', 'produto_id');
+    }
+
+    public function granel()
+    {
+        return $this->belongsTo('App\Granel', 'granel_id');
     }
 }

@@ -63,7 +63,7 @@
                         </div>
                         <div class="x_content">
                             <br/>
-                            <form class="form-horizontal form-label-left" action="granel/addgranel" method="post">
+                            <form class="form-horizontal form-label-left" action="vendas/addgranel" method="post">
 
                                 {{ method_field('POST') }}
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -71,9 +71,9 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Granel</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select class="form-control" name="produto_id">
+                                        <select class="form-control" name="granel_id">
                                             @foreach($graneis as $granel)
-                                                <option value="{{$granel->id}}">{{$granel->nome}}</option>
+                                                <option value="{{$granel->id}}">{{$granel->codigo}} - {{$granel->nome}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -123,8 +123,15 @@
                                 @foreach($itensVenda as $item)
                                     <tr>
                                         <td>{{$item->id}}</td>
-                                        <td>{{$item->produto->nome}}</td>
-                                        <td>{{$item->quantidade}}</td>
+                                        @if($item->produto == null)
+                                            <td>{{$item->granel->nome}}</td>
+                                            <td>{{$item->quantidade}} g</td>
+                                        @else
+                                            <td>{{$item->produto->nome}}</td>
+                                            <td>{{$item->quantidade}}</td>
+                                        @endif
+
+
                                         <td>R$ {{$item->precoUnidade}}</td>
                                         <td>R$ {{$item->total}}</td>
                                         <td>

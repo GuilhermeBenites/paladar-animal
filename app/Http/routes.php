@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::group(['prefix' => 'vendas'], function () {
         Route::get('/', 'VendaController@index');
         Route::post('/addproduto', 'VendaController@addProduto');
+        Route::post('/addgranel', 'VendaController@addGRanel');
         Route::post('/finalizar', 'VendaController@finalizar');
         Route::delete('/item/{item}', 'VendaController@removeItem');
         Route::delete('/', 'VendaController@cancelaVenda');

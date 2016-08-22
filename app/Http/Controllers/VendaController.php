@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Estoque;
+use App\Granel;
+use App\GranelEstoque;
 use App\ItemVenda;
 use App\Movimentacao;
 use App\Produto;
@@ -28,11 +30,12 @@ class VendaController extends Controller
 
         foreach ($itensVenda as $item){
             $item->produto = Produto::find($item->produto_id);
+            $item->granel = Granel::find($item->granel_id);
 
-            $totalDeVendas += $item->produto->preco * $item->quantidade;
+            $totalDeVendas += $item->precoUnidade * $item->quantidade;
         }
 
-        $graneis = [];
+        $graneis = Granel::all();
 
         return view('vendas.index', array('produtos' => $produtos, 'itensVenda' => $itensVenda, 'totalDeVendas' => $totalDeVendas, 'graneis' => $graneis));
     }
@@ -51,16 +54,9 @@ class VendaController extends Controller
 
 
     public function finalizar(Request $total){
-
-
-
         $venda = Venda::create($total->all());
 
-
-
         $items = ItemVenda::where('venda_id', null)->get();
-
-
 
         foreach ($items as $item){
             $item->venda_id = $venda->id;
@@ -98,6 +94,21 @@ class VendaController extends Controller
 
     public function cancelaVenda(){
         ItemVenda::cancelaVenda();
+
+        return redirect('/vendas');
+    }
+
+    public function addGRanel(Request $request){
+
+        $novoItem = $request->all();
+
+        $granel = GranelEstoque::where('granel_id','=',$novoItem['granel_id'])->first();
+
+        $precoEmGramas = $granel->preco/1000;
+        $novoItem['precoUnidade'] = $granel->preco;
+        $novoItem['total'] = $precoEmGramas * $novoItem['quantidade'];
+
+        ItemVenda::create($novoItem);
 
         return redirect('/vendas');
     }
