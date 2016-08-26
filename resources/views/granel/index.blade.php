@@ -15,7 +15,7 @@
 
             <div class="row">
 
-                <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Acompanhar Estoque</h2>
@@ -37,7 +37,7 @@
                                     <tr>
                                         <td>{{$granel->granel->nome}}</td>
                                         <td>{{$granel->quantidade}} g</td>
-                                        <td>{{str_replace(".","," , $granel->preco)}}</td>
+                                        <td>R$ {{str_replace(".","," , $granel->preco)}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
