@@ -49,7 +49,11 @@
                                                 <span class="label label-danger">Baixa</span>
                                             </td>
                                         @endif
-                                        <td>{{$movimentacao->produto->nome}}</td>
+                                            @if($movimentacao->produto == null)
+                                                <td>{{$movimentacao->granel->nome}}</td>
+                                            @else
+                                                <td>{{$movimentacao->produto->nome}}</td>
+                                            @endif
                                         <td>{{$movimentacao->quantidade}}</td>
                                         <td>{{$movimentacao->created_at}}</td>
 

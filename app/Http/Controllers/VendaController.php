@@ -61,7 +61,12 @@ class VendaController extends Controller
         foreach ($items as $item){
             $item->venda_id = $venda->id;
 
-            $itemEmEstoque = Estoque::where('produto_id', $item->produto_id)->first();
+            if($item->produto_id != null){
+                $itemEmEstoque = Estoque::where('produto_id', $item->produto_id)->first();
+            }
+            else{
+                $itemEmEstoque = GranelEstoque::where('granel_id', $item->granel_id)->first();
+            }
 
             $itemEmEstoque->quantidade -= $item->quantidade;
 
@@ -76,6 +81,7 @@ class VendaController extends Controller
             $movimentacao->venda_id = $venda->id;
             $movimentacao->quantidade = $item->quantidade;
             $movimentacao->produto_id = $item->produto_id;
+            $movimentacao->granel_id = $item->granel_id;
             $movimentacao->razao = 'venda';
 
             $movimentacao->usuario_id =  Auth::user()->id;
