@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Categoria;
 use App\Estoque;
 use App\Movimentacao;
 use App\Produto;
@@ -18,9 +19,16 @@ class EstoqueController extends Controller
      */
     public function index()
     {
-        $estoque = Estoque::all();
+        $categorias = Categoria::all();
 
-        return view('estoque.index', array('estoque' => $estoque));
+        $estoques = [];
+
+        foreach ($categorias as $categoria){
+            $estoque = Estoque::where('categoria_id','=', $categoria->id)->get();
+            $estoques[$categoria->nome] = $estoque;
+        }
+
+        return view('estoque.index', array('estoques' => $estoques, 'categorias' => $categorias));
     }
 
     /**
@@ -48,19 +56,27 @@ class EstoqueController extends Controller
 
         if($itemEmEstoque != null){
             $itemEmEstoque->quantidade += $request->get('quantidade');
-            $itemEmEstoque->preco = $request->get('preco');
 
             $itemEmEstoque->save();
+
+            $request = $request->all();
         }
         else{
-            $itemEmEstoque = Estoque::create($request->all());
+
+            $produto = Produto::find($request->get('produto_id'));
+
+            $request = $request->all();
+
+            $request['categoria_id'] = $produto->categoria_id;
+
+            $itemEmEstoque = Estoque::create($request);
         }
 
         // Cria a movimentação
 
         $movimentacao = new Movimentacao();
 
-        $movimentacao->quantidade = $request->get('quantidade');
+        $movimentacao->quantidade = $request['quantidade'];
         $movimentacao->produto_id = $itemEmEstoque->produto_id;
         $movimentacao->razao = 'entrada';
 

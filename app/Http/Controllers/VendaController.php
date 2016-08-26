@@ -32,7 +32,7 @@ class VendaController extends Controller
             $item->produto = Produto::find($item->produto_id);
             $item->granel = Granel::find($item->granel_id);
 
-            $totalDeVendas += $item->precoUnidade * $item->quantidade;
+            $totalDeVendas += $item->total;
         }
 
         $graneis = Granel::all();
