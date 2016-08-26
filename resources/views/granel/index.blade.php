@@ -36,8 +36,8 @@
                                 @foreach($graneis as $granel)
                                     <tr>
                                         <td>{{$granel->granel->nome}}</td>
-                                        <td>{{$granel->quantidade}}</td>
-                                        <td>{{$granel->preco}}</td>
+                                        <td>{{$granel->quantidade}} g</td>
+                                        <td>{{str_replace(".","," , $granel->preco)}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

@@ -108,7 +108,9 @@ class GranelController extends Controller
 
         if($itemEmEstoque != null){
             $itemEmEstoque->quantidade += $request->get('quantidade');
-            $itemEmEstoque->preco = $request->get('preco');
+
+            $preco = str_replace(",","." , $request->get('preco'));
+            $itemEmEstoque->preco = $preco;
 
             $itemEmEstoque->save();
         }

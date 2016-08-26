@@ -29,6 +29,7 @@
                                     <th>Razão</th>
                                     <th>Produto</th>
                                     <th>Quantidade</th>
+                                    <th>Data</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -50,7 +51,7 @@
                                         @endif
                                         <td>{{$movimentacao->produto->nome}}</td>
                                         <td>{{$movimentacao->quantidade}}</td>
-
+                                        <td>{{$movimentacao->created_at}}</td>
 
                                     </tr>
                                 @endforeach
