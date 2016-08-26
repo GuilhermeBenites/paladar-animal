@@ -101,6 +101,14 @@
                   </li>
                 </ul>
               </li>
+              <li><a><i class="fa fa-pie-chart"></i> Relatórios <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                  <li><a href="#">Venda</a>
+                  </li>
+                  <li><a href="#">Estoque</a>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </div>
 
