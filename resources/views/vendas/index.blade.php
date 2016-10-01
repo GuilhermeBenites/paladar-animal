@@ -122,18 +122,18 @@
                                 <tbody>
                                 @foreach($itensVenda as $item)
                                     <tr>
-                                        <td>{{$item->id}}</td>
                                         @if($item->produto == null)
+                                            <td>{{$item->granel->codigo}}</td>
                                             <td>{{$item->granel->nome}}</td>
                                             <td>{{$item->quantidade}} g</td>
                                         @else
+                                            <td>{{$item->produto->codigo}}</td>
                                             <td>{{$item->produto->nome}}</td>
                                             <td>{{$item->quantidade}}</td>
                                         @endif
 
-
-                                        <td>R$ {{$item->precoUnidade}}</td>
-                                        <td>R$ {{$item->total}}</td>
+                                        <td class="precoShow">R$ {{$item->precoUnidade}}</td>
+                                        <td class="precoShow">R$ {{$item->total}}</td>
                                         <td>
                                             <form action="{{ url('vendas/item/'.$item->id) }}" method="POST">
                                                 {{ csrf_field() }}
@@ -149,7 +149,7 @@
 
                                 <tr>
                                     <td style="font-weight: bold;">TOTAL</td>
-                                    <td style="font-weight: bold;">R$ {{$totalDeVendas}}</td>
+                                    <td style="font-weight: bold;" class="precoShow">R$ {{$totalDeVendas}}</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>

@@ -40,7 +40,7 @@
                                     <tr>
                                         <td>{{$produto->codigo}}</td>
                                         <td>{{$produto->nome}}</td>
-                                        <td>R$ {{$produto->preco}}</td>
+                                        <td class="precoShow">R$ {{$produto->preco}}</td>
                                         <td>{{ $produto->categoria->nome }}</td>
                                         <td>
                                             <form action="{{ url('produtos/editar/'.$produto->id) }}" method="GET">

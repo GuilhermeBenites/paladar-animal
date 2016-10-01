@@ -173,6 +173,11 @@
 <script type="application/javascript">
   $(document).ready(function(){
     $('.preco').mask('000.000.000.000.000,00', {reverse: true});
+
+    $( ".precoShow" ).each(function() {
+      $(this).text($(this).text().replace('.',','));
+    });
+
   });
 </script>
 </body>
