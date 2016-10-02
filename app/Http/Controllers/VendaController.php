@@ -44,6 +44,17 @@ class VendaController extends Controller
 
         $novoItem = $novoItem->all();
         $produto = Produto::find($novoItem['produto_id']);
+
+        $itemVenda = ItemVenda::where('produto_id','=',$novoItem['produto_id'])->where('venda_id','=',null)->first();
+
+        if($itemVenda){
+            $itemVenda->quantidade += $novoItem['quantidade'];
+            $itemVenda->total = $itemVenda->precoUnidade * $itemVenda->quantidade;
+            $itemVenda->save();
+
+            return redirect('/vendas');
+        }
+
         $novoItem['precoUnidade'] = $produto->preco;
         $novoItem['total'] = $produto->preco * $novoItem['quantidade'];
         
@@ -109,6 +120,16 @@ class VendaController extends Controller
         $novoItem = $request->all();
 
         $granel = GranelEstoque::where('granel_id','=',$novoItem['granel_id'])->first();
+
+        $itemVenda = ItemVenda::where('granel_id','=',$novoItem['granel_id'])->where('venda_id','=',null)->first();
+
+        if($itemVenda){
+            $itemVenda->quantidade += $novoItem['quantidade'];
+            $itemVenda->total = ($itemVenda->precoUnidade/1000) * $itemVenda->quantidade;
+            $itemVenda->save();
+
+            return redirect('/vendas');
+        }
 
         $precoEmGramas = $granel->preco/1000;
         $novoItem['precoUnidade'] = $granel->preco;

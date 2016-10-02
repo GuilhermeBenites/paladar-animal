@@ -12,7 +12,7 @@ class ItemVenda extends Model
     protected $fillable = ['produto_id', 'quantidade', 'precoUnidade', 'total', 'granel_id'];
 
     public static function itensVendaSemFinalizar(){
-        return DB::table('item_venda')->where('venda_id', null)->get();
+        return DB::table('item_venda')->where('venda_id', null)->orderBy('updated_at', 'desc')->get();
     }
 
     public static function cancelaVenda(){
