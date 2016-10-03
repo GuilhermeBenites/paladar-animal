@@ -24,7 +24,7 @@
     <div class="col-md-3 left_col">
       <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-          <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Paladar Animal</span></a>
+          <a href="{{url('/')}}" class="site_title"><i class="fa fa-paw"></i> <span>Paladar Animal</span></a>
         </div>
 
         <div class="clearfix"></div>
@@ -37,7 +37,7 @@
             <ul class="nav side-menu">
               <li><a><i class="fa fa-home"></i> Início <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                  <li><a href="index.html">Painel</a>
+                  <li><a href="#">Painel</a>
                   </li>
                 </ul>
               </li>
@@ -51,7 +51,7 @@
                   </li>
                   <li><a href="#">Consultar Preço</a>
                   </li>
-                  <li><a href="#">Histórico de Vendas</a>
+                  <li><a href="{{url('vendas/vendas-do-dia')}}">Histórico de Vendas</a>
                   </li>
                 </ul>
               </li>

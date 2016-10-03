@@ -100,8 +100,8 @@
                                                                 <th>{{$item->granel->codigo}}</th>
                                                                 <th>{{$item->granel->nome}}</th>
                                                             @endif
-                                                            <td>{{$item->precoUnidade}}</td>
-                                                            <td>{{$item->precoUnidade * $item->quantidade}}</td>
+                                                            <td>{{$item->quantidade}}</td>
+                                                            <td>R$ {{$item->precoUnidade * $item->quantidade}}</td>
                                                         </tr>
                                                     @endforeach
                                                     </tbody>
