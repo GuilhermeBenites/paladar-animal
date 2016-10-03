@@ -170,6 +170,10 @@
 
 <script src="/js/jquery.mask.min.js"></script>
 
+<!-- bootstrap-daterangepicker -->
+<script src="/js/moment/moment.min.js"></script>
+<script src="/js/datepicker/daterangepicker.js"></script>
+
 <script type="application/javascript">
   $(document).ready(function(){
     $('.preco').mask('000.000.000.000.000,00', {reverse: true});
@@ -179,6 +183,22 @@
     });
 
   });
+
+  $(document).ready(function() {
+    $('#single_cal4').daterangepicker({
+      format: 'DD/MM/YYYY',
+      language: 'pt-BR',
+      singleDatePicker: true,
+
+      "locale": {
+        "daysOfWeek": ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+        "monthNames": ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']
+      }
+    }, function(start, end, label) {
+      console.log(start.toISOString(), end.toISOString(), label);
+    });
+  });
 </script>
+
 </body>
 </html>

@@ -139,4 +139,80 @@ class VendaController extends Controller
 
         return redirect('/vendas');
     }
+
+    public function vendasDoDia(){
+        $inicio = date('Y-m-d'). " 00:00:00";
+
+        $fim = date("Y-m-d") . " 23:59:59";
+
+        $vendas = Venda::where('created_at', '>', $inicio)->where('created_at', '<', $fim)->get();
+
+        $vendas = $vendas->all();
+
+        $vendasItems = [];
+        foreach ($vendas as $venda){
+            $itens = ItemVenda::where('venda_id','=',$venda["id"])->get();
+
+            $itens = $itens->all();
+
+            foreach ($itens as $item){
+                $vendasItems[$venda["id"]]["itens"][] = $item;
+            }
+
+            $vendasItems[$venda["id"]]["total"] = $venda["total"];
+
+            $data = $venda["created_at"];
+
+            $data = $data->toDateTimeString();
+
+            $vendasItems[$venda["id"]]["dia"] = $data;
+
+            $vendasItems[$venda["id"]]["id"] = $venda["id"];
+        }
+
+        $dia = date("Y-m-d");
+
+        return view('vendas.vendasDia', array('vendasItems' => $vendasItems, 'dia' => $dia));
+    }
+
+    public function vendasDoDiaPesquisa(Request $request){
+
+
+        $dia = $request->get('diaVenda');
+
+        $dia = str_replace('/','-',$dia);
+
+        $dia = date_format(date_create($dia), 'Y-m-d');
+
+        $inicio = $dia . " 00:00:00";
+
+        $fim = $dia . " 23:59:59";
+
+        $vendas = Venda::where('created_at', '>', $inicio)->where('created_at', '<', $fim)->get();
+
+        $vendas = $vendas->all();
+
+        $vendasItems = [];
+        foreach ($vendas as $venda){
+            $itens = ItemVenda::where('venda_id','=',$venda["id"])->get();
+
+            $itens = $itens->all();
+
+            foreach ($itens as $item){
+                $vendasItems[$venda["id"]]["itens"][] = $item;
+            }
+
+            $vendasItems[$venda["id"]]["total"] = $venda["total"];
+
+            $data = $venda["created_at"];
+
+            $data = $data->toDateTimeString();
+
+            $vendasItems[$venda["id"]]["dia"] = $data;
+
+            $vendasItems[$venda["id"]]["id"] = $venda["id"];
+        }
+
+        return view('vendas.vendasDia', array('vendasItems' => $vendasItems, 'dia' => $dia));
+    }
 }

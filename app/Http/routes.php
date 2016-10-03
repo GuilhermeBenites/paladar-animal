@@ -53,6 +53,10 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('/finalizar', 'VendaController@finalizar');
         Route::delete('/item/{item}', 'VendaController@removeItem');
         Route::delete('/', 'VendaController@cancelaVenda');
+
+        Route::get('/vendas-do-dia', 'VendaController@vendasDoDia');
+
+        Route::get('/vendas-do-dia-pesquisa', 'VendaController@vendasDoDiaPesquisa');
     });
 
     Route::group(['prefix' => 'estoque'], function () {
