@@ -63,6 +63,9 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/', 'EstoqueController@index');
         Route::get('/entrada', 'EstoqueController@create');
         Route::post('/entrada', 'EstoqueController@store');
+        Route::get('/informar', 'EstoqueController@informar');
+        Route::post('/informar', 'EstoqueController@atualizar');
+
     });
 
     Route::group(['prefix' => 'movimentacao'], function () {
@@ -75,6 +78,9 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('/novo', 'GranelController@store');
         Route::get('/abrir', 'GranelController@abrirSacoForm');
         Route::post('/abrir', 'GranelController@abrirSacoSalvar');
+
+        Route::get('/informar', 'GranelController@informar');
+        Route::post('/informar', 'GranelController@atualizar');
     });
 });
 

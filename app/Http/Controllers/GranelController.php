@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Granel;
 use App\GranelEstoque;
+use App\InformarEstoque;
 use App\Produto;
 use Illuminate\Http\Request;
 
@@ -119,6 +120,35 @@ class GranelController extends Controller
         }
 
         // MOVIMENTAÇÃO
+
+        return redirect('/granel');
+    }
+
+    public function informar(){
+        $graneis = Granel::all();
+
+        return view('granel.informar', array('graneis' => $graneis));
+    }
+
+    public function atualizar(Request $request){
+
+        $request = $request->all();
+
+        $itemEstoque = GranelEstoque::where('granel_id','=',$request["granel_id"])->first();
+
+        if($itemEstoque){
+            $itemEstoque->quantidade = $request["quantidade"];
+
+            $itemEstoque->save();
+
+            $informarEstoque = new InformarEstoque();
+
+            $informarEstoque->granel_id = $request["granel_id"];
+            $informarEstoque->quantidade = $request["quantidade"];
+            $informarEstoque->justificativa = $request["justificativa"];
+
+            $informarEstoque->save();
+        }
 
         return redirect('/granel');
     }

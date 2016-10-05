@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Categoria;
 use App\Estoque;
+use App\InformarEstoque;
 use App\Movimentacao;
 use App\Produto;
 use Illuminate\Http\Request;
@@ -130,5 +131,34 @@ class EstoqueController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function informar(){
+        $produto = Produto::all();
+
+        return view('estoque.informar', array('produtos' => $produto));
+    }
+
+    public function atualizar(Request $request){
+
+        $request = $request->all();
+
+        $itemEstoque = Estoque::where('produto_id','=',$request["produto_id"])->first();
+
+        if($itemEstoque){
+            $itemEstoque->quantidade = $request["quantidade"];
+
+            $itemEstoque->save();
+
+            $informarEstoque = new InformarEstoque();
+
+            $informarEstoque->produto_id = $request["produto_id"];
+            $informarEstoque->quantidade = $request["quantidade"];
+            $informarEstoque->justificativa = $request["justificativa"];
+
+            $informarEstoque->save();
+        }
+
+        return redirect('/estoque');
     }
 }
