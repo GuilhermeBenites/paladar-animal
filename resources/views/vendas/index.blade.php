@@ -99,6 +99,21 @@
                 </div>
             </div>
 
+            @if ($errors->has("estoque"))
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                        <div class="x_content bs-example-popovers">
+
+                            <div class="alert alert-danger alert-dismissible fade in text-center" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Fechar"><span aria-hidden="true">×</span>
+                                </button>
+                                {{$errors->first("estoque")}}
+                            </div>
+                        </div>
+                </div>
+            </div>
+            @endif
+
             <div class="row">
                 <div class="col-md-offset-1 col-md-10 col-sm-10 col-xs-10">
                     <div class="x_panel">

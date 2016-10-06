@@ -43,6 +43,20 @@ class VendaController extends Controller
     public function addProduto(Request $novoItem){
 
         $novoItem = $novoItem->all();
+
+        /**
+         * Verifica Estoque
+         */
+        $estoque = Estoque::where('produto_id','=',$novoItem['produto_id'])->first();
+
+        if($estoque == null){
+            return redirect('/vendas')->withErrors(["estoque" => "Produto não encontrado em Estoque"]);
+        }
+
+        if($estoque->quantidade == 0 || $estoque->quantidade < $novoItem['quantidade']){
+            return redirect('/vendas')->withErrors(["estoque" => "Produto com estoque insuficiente"]);
+        }
+
         $produto = Produto::find($novoItem['produto_id']);
 
         $itemVenda = ItemVenda::where('produto_id','=',$novoItem['produto_id'])->where('venda_id','=',null)->first();
@@ -118,6 +132,19 @@ class VendaController extends Controller
     public function addGRanel(Request $request){
 
         $novoItem = $request->all();
+
+        /**
+         * Verifica Estoque
+         */
+        $estoque = GranelEstoque::where('granel_id','=',$novoItem['granel_id'])->first();
+
+        if($estoque == null){
+            return redirect('/vendas')->withErrors(["estoque" => "Granel não encontrado em Estoque"]);
+        }
+
+        if($estoque->quantidade == 0 || $estoque->quantidade < $novoItem['quantidade']){
+            return redirect('/vendas')->withErrors(["estoque" => "Granel com estoque insuficiente"]);
+        }
 
         $granel = GranelEstoque::where('granel_id','=',$novoItem['granel_id'])->first();
 
