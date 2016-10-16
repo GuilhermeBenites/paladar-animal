@@ -11,7 +11,6 @@ use App\Produto;
 use App\Venda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class VendaController extends Controller
 {
@@ -22,7 +21,7 @@ class VendaController extends Controller
      */
     public function index()
     {
-        $produtos = Produto::all();
+        $produtos = Produto::orderBy('nome','asc')->get();
         
         $itensVenda = ItemVenda::itensVendaSemFinalizar();
 

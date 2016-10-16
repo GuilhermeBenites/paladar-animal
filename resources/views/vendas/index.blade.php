@@ -28,10 +28,10 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Produto</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select class="form-control" name="produto_id">
+
+                                        <select class="selectpicker form-control" data-live-search="true" name="produto_id">
                                             @foreach($produtos as $produto)
-                                                <option value="{{$produto->id}}">{{$produto->codigo}}
-                                                    - {{$produto->nome}}</option>
+                                                <option value="{{$produto->id}}" data-tokens="{{$produto->categoria->nome}}">{{$produto->nome}}</option>
                                             @endforeach
                                         </select>
                                     </div>

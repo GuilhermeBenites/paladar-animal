@@ -16,6 +16,9 @@
 
     <!-- Custom Theme Style -->
     <link href="/css/custom.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
+
 </head>
 
 <body class="nav-md">
@@ -177,6 +180,12 @@
 <!-- bootstrap-daterangepicker -->
 <script src="/js/moment/moment.min.js"></script>
 <script src="/js/datepicker/daterangepicker.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="/js/i18n/defaults-pt_BR.min.js"></script>
 
 <script type="application/javascript">
     $(document).ready(function(){
