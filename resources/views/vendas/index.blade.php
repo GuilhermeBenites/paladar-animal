@@ -31,7 +31,7 @@
 
                                         <select class="selectpicker form-control" data-live-search="true" name="produto_id">
                                             @foreach($produtos as $produto)
-                                                <option value="{{$produto->id}}" data-tokens="{{$produto->categoria->nome}}">{{$produto->nome}}</option>
+                                                <option value="{{$produto->id}}">{{$produto->nome}}</option>
                                             @endforeach
                                         </select>
                                     </div>
