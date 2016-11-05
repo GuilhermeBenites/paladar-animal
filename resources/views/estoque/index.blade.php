@@ -37,6 +37,7 @@
                                         </thead>
                                         <tbody>
                                         @foreach($estoques[$categoria->nome] as $item)
+                                            @if($item->produto != null)
                                             <tr>
                                                 <td>{{$item->produto->codigo}}</td>
                                                 <td>{{$item->produto->nome}}</td>
@@ -56,6 +57,7 @@
                                                 @endif
 
                                             </tr>
+                                            @endif
                                         @endforeach
                                         </tbody>
                                     </table>

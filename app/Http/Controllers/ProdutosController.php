@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Categoria;
 use App\Http\Requests\ProdutoRequest;
 use App\Produto;
+use Illuminate\Http\Request;
 
 class ProdutosController extends Controller
 {
@@ -59,12 +60,12 @@ class ProdutosController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param ProdutoRequest|\Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @param Produto $produto
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function update(ProdutoRequest $request, Produto $produto)
+    public function update(Request $request, Produto $produto)
     {
         $produto->fill($request->all());
 

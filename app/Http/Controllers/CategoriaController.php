@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategoriaRequest;
 
 use App\Categoria;
+use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
 {
@@ -55,11 +56,12 @@ class CategoriaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\CategoriaRequest  $request
-     * @param  Categoria  $categoria
+     * @param Request $request
+     * @param  Categoria $categoria
      * @return \Illuminate\Http\Response
+     * @internal param $
      */
-    public function update(CategoriaRequest $request, Categoria $categoria)
+    public function update(Request $request, Categoria $categoria)
     {
         $categoria->fill($request->all());
 
